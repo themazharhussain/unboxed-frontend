@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0B1014;
+  --color-secondary: #5E5E5E;
+  --color-body: #FEFEFE;
+  --font-geist: "Geist", sans-serif;
+}
+
+body {
+  background: var(--color-body);
+  color: var(--color-primary);
+  font-family: var(--font-geist);
+}
+
+/* ── Components ─────────────────────────────────────── */
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 209px;
+  height: 58px;
+  border-radius: 100px;
+  background: var(--color-primary);
+  color: var(--color-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}

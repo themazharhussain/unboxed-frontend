@@ -1,0 +1,9 @@
+{
+  // Disable VS Code's built-in CSS validator — it doesn't understand
+  // Tailwind v4 at-rules like @theme, @layer, @utility, etc.
+  // Tailwind's own language server handles validation instead.
+  "css.validate": false,
+  "scss.validate": false,
+  "tailwindCSS.experimental.configFile": "./src/app/globals.css",
+  "editor.formatOnSave": false
+}
