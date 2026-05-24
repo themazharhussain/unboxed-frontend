@@ -140,37 +140,46 @@ function SocialLink({
 export default function Footer() {
   return (
     <footer className="w-full">
-      <div className="mx-auto w-full max-w-400 px-4 sm:px-6 lg:px-8">
-
-        {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-12 md:py-16 lg:grid-cols-5">
-
+      <div className="mx-auto w-full max-w-330 px-4 lg:px-8">
+        {/* Main footer */}
+        <div className="grid grid-cols-1 gap-10 py-12 md:py-16 lg:grid-cols-[auto_1fr] lg:items-start lg:gap-20">
           {/* Logo column */}
-          <div className="flex justify-center lg:items-start">
-            <Image src="/logos/logo-square.svg" alt="Unboxed" width={61} height={61} style={{ width: 61, height: 61 }} />
+          <div className="flex justify-center lg:justify-start">
+            <Image
+              src="/logos/logo-square.svg"
+              alt="Unboxed"
+              width={61}
+              height={61}
+              style={{ width: 61, height: 61 }}
+            />
           </div>
 
           {/* Nav columns */}
-          {nav.map(({ heading, links }) => (
-            <div key={heading} className="text-center">
-              <p className="mb-4 text-base font-semibold text-primary">{heading}</p>
-              <ul className="flex flex-col gap-3">
-                {links.map(({ label, href }) => (
-                  <li key={label}>
-                    <Link
-                      href={href}
-                      className="text-sm text-primary transition-opacity hover:opacity-70"
-                    >
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col gap-6 border-t border-black/10 py-8">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4 lg:justify-items-end">
+            {nav.map(({ heading, links }) => (
+              <div key={heading} className="text-center lg:text-left">
+                <p className="mb-4 text-base font-semibold text-primary">
+                  {heading}
+                </p>
 
+                <ul className="flex flex-col gap-3">
+                  {links.map(({ label, href }) => (
+                    <li key={label}>
+                      <Link
+                        href={href}
+                        className="text-sm text-primary transition-opacity hover:opacity-70"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col space-y-4 border-t border-black/10 py-6">
           {/* Socials */}
           <div className="flex items-center justify-center gap-4">
             {socials.map(({ label, href, Icon }) => (
@@ -179,8 +188,8 @@ export default function Footer() {
           </div>
 
           {/* Legal + copyright */}
-          <div className="flex flex-col gap-6 lg:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+          <div className="flex flex-col gap-6 sm:items-center lg:flex-row lg:justify-between">
+            <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
               {legal.map(({ label, href }) => (
                 <Link
                   key={label}
@@ -191,13 +200,12 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
+
             <p className="text-center text-sm text-primary">
               © {new Date().getFullYear()} Unboxed
             </p>
           </div>
-
         </div>
-
       </div>
     </footer>
   );
