@@ -21,10 +21,20 @@ export default function Header() {
 
   const close = () => setOpen(false);
 
-  // Prevent body scroll when menu is open
+  // Prevent body scroll when menu is open — pad to avoid layout shift
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (open) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
   }, [open]);
 
   // Close menu when resized to desktop
