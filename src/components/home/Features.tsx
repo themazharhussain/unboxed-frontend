@@ -51,7 +51,7 @@ function FeatureCard({
   return (
     // sticky anchor — sticks at top of viewport, no height of its own
     <div
-      className="sticky top-10 lg:top-25 my-10"
+      className="sticky top-10 md:15 lg:top-25 my-10"
       style={{ zIndex: index + 1 }}
     >
       {/* motion wrapper — offset downward per index so cards visually stack */}

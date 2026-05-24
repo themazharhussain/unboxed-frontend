@@ -4,7 +4,7 @@ import Container from "@/components/ui/Container";
 export default function HeroSection() {
   return (
     <Container>
-      <div className="w-full flex flex-col items-center justify-center  overflow-hidden text-center space-y-4 py-12 md:py-16">
+      <div className="w-full flex flex-col items-center justify-center  overflow-hidden text-center space-y-4 py-12 md:py-28">
         <h1 className="text-center text-4xl md:text-6xl lg:text-[90px] font-semibold">
           <span className="block">Your Mobile Network</span>
           <span className="block text-secondary"> Straight Out The Box</span>
