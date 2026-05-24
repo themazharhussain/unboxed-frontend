@@ -128,7 +128,7 @@ export default function FaqSection() {
   return (
     <Container className="bg-tertiary">
       <div className="flex w-full flex-col py-12 space-y-8 md:py-16">
-        <motion.h2
+        {/* <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -137,7 +137,7 @@ export default function FaqSection() {
           className="text-center text-3xl font-semibold md:text-[46px]"
         >
           Things People Ask
-        </motion.h2>
+        </motion.h2> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
           <motion.div
