@@ -5,5 +5,14 @@
   "css.validate": false,
   "scss.validate": false,
   "tailwindCSS.experimental.configFile": "./src/app/globals.css",
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+
+  // Tailwind v4: enable suggestions in TSX/JSX
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }

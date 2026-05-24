@@ -1,5 +1,5 @@
-import Container from "@/components/shared/Container";
-import SectionHeading from "@/components/shared/SectionHeading";
+import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const features = [
   {
