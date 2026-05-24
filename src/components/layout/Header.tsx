@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import Button from "@/components/ui/Button";
+import MenuIcon from "@/components/icons/MenuIcon";
+import CloseIcon from "@/components/icons/CloseIcon";
 
 const links = [
   { href: "/about", label: "About Us" },
@@ -17,12 +20,26 @@ export default function Header() {
 
   const close = () => setOpen(false);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  // Close menu when resized to desktop
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const handler = (e: MediaQueryListEvent) => { if (e.matches) close(); };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <header className="w-full border-b border-black/10">
-      <div className="mx-auto flex items-center justify-between h-18 w-full max-w-312  px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-18 w-full max-w-312 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <Image src="/logos/logo.svg" alt="Unboxed logo" width={141} height={27} priority />
+          <Image src="/logos/logo.svg" alt="Unboxed logo" width={141} height={27} priority className="h-auto w-auto" />
         </Link>
 
         {/* Nav links - desktop */}
@@ -36,76 +53,75 @@ export default function Header() {
 
         {/* CTA buttons - desktop */}
         <div className="hidden items-center gap-3 lg:flex">
-          <Button href="/login" variant="outline" width={76} height={40}>
-            Login
-          </Button>
-          <Button href="/get-started" variant="primary" width={130} height={40}>
-            Get Started
-          </Button>
+          <Button href="/login" variant="outline" width={76} height={40}>Login</Button>
+          <Button href="/get-started" variant="primary" width={130} height={40}>Get Started</Button>
         </div>
 
         {/* Hamburger - mobile */}
-        <button
+        <motion.button
           type="button"
           aria-label="Open menu"
           onClick={() => setOpen(true)}
-          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-primary/10 text-primary transition-opacity active:opacity-60 lg:hidden"
+          whileTap={{ scale: 0.9 }}
+          className="flex size-10 cursor-pointer items-center justify-center rounded-full border border-black/10 text-primary lg:hidden"
         >
-          <span className="flex flex-col gap-1.25">
-            <span className="block h-0.5 w-5 rounded-full bg-primary" />
-            <span className="block h-0.5 w-5 rounded-full bg-primary" />
-            <span className="block h-0.5 w-5 rounded-full bg-primary" />
-          </span>
-        </button>
+          <MenuIcon size={18} />
+        </motion.button>
       </div>
 
       {/* Mobile full-screen menu */}
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex flex-col bg-body text-primary"
-          role="dialog"
-          aria-modal="true"
-        >
-          {/* Top bar */}
-          <div className="flex h-18 shrink-0 items-center justify-between px-4 sm:px-6">
-            <Link href="/" onClick={close} className="shrink-0">
-              <Image src="/logos/logo.svg" alt="Unboxed logo" width={141} height={27} priority />
-            </Link>
-
-            <button
-              onClick={close}
-              aria-label="Close menu"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 text-primary transition-opacity active:opacity-60"
-            >
-              ✕
-            </button>
-          </div>
-
-          {/* CTA row */}
-          <div className="shrink-0 flex items-center justify-center gap-3 border-y border-primary/10 py-3">
-            <Button href="/get-started" variant="primary" width={160} height={40} onClick={close}>
-              Get Started
-            </Button>
-            <Button href="/login" variant="outline" width={120} height={40} onClick={close}>
-              Login
-            </Button>
-          </div>
-
-          {/* Nav links - mobile */}
-          <nav className="flex flex-1 flex-col items-center justify-center gap-7">
-            {links.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={close}
-                className="text-2xl font-bold uppercase tracking-widest transition-opacity hover:opacity-70 active:opacity-50"
-              >
-                {label}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="fixed inset-0 z-50 flex flex-col bg-body text-primary lg:hidden"
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* Top bar */}
+            <div className="flex h-18 shrink-0 items-center justify-between border-b border-black/10 px-4 sm:px-6">
+              <Link href="/" onClick={close} className="shrink-0">
+                <Image src="/logos/logo.svg" alt="Unboxed logo" width={141} height={27} priority className="h-auto w-auto" />
               </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+              <button
+                onClick={close}
+                aria-label="Close menu"
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-black/10 text-primary transition-opacity active:opacity-60"
+              >
+                <CloseIcon size={18} />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex flex-1 flex-col px-4 pt-2 sm:px-6">
+              {links.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={close}
+                  className="flex w-full items-center border-b border-black/10 py-4 text-lg font-medium transition-opacity hover:opacity-60 active:opacity-40"
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Bottom CTAs */}
+            <div className="flex shrink-0 flex-col gap-3 px-4 pb-8 pt-4 sm:px-6">
+              <Button href="/login" variant="outline" width="100%" height={48} onClick={close}>
+                Login
+              </Button>
+              <Button href="/get-started" variant="primary" width="100%" height={48} onClick={close}>
+                Get Started
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

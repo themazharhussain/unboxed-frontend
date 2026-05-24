@@ -58,7 +58,7 @@ const legal = [
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-body">
+    <footer className="w-full">
       <div className="mx-auto w-full max-w-312 px-4 sm:px-6 lg:px-8">
 
         {/* Main grid */}
@@ -66,7 +66,7 @@ export default function Footer() {
 
           {/* Logo column */}
           <div className="flex items-start">
-            <Image src="/logos/logo-square.svg" alt="Unboxed" width={61} height={61} />
+            <Image src="/logos/logo-square.svg" alt="Unboxed" width={61} height={61} className="h-auto w-auto" />
           </div>
 
           {/* Nav columns */}
