@@ -41,10 +41,10 @@ export default function FeatureSection() {
           </div>
 
           <div className="flex flex-col justify-center space-y-3">
-            <h2 className="text-2xl font-semibold sm:text-3xl lg:text-[36px]">
+            <h2 className="text-2xl capitalize font-semibold sm:text-3xl lg:text-[36px]">
               {feature.heading}
             </h2>
-            <p className="text-sm">{feature.body}</p>
+            <p className="text-sm text-secondary">{feature.body}</p>
             <div className="mt-2 flex w-full flex-wrap items-center gap-2 text-[12px]">
               {feature.tags.map((tag) => (
                 <span

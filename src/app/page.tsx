@@ -1,4 +1,4 @@
-import { FeatureSection, HeroSection } from "@/components/home";
+import { FeatureSection, HeroSection, ReadyToLaunchSection } from "@/components/home";
 import type { Metadata } from "next";
 
 
@@ -14,7 +14,8 @@ export default function Home() {
   return (
     <>
     <HeroSection />
-    <FeatureSection />s
+    <FeatureSection />
+    <ReadyToLaunchSection />
      
     </>
   );
