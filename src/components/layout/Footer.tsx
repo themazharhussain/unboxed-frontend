@@ -66,7 +66,7 @@ export default function Footer() {
 
           {/* Logo column */}
           <div className="flex items-start">
-            <Image src="/logos/logo-square.svg" alt="Unboxed" width={61} height={61} className="h-auto w-auto" />
+            <Image src="/logos/logo-square.svg" alt="Unboxed" width={61} height={61} style={{ width: 61, height: 61 }} />
           </div>
 
           {/* Nav columns */}
