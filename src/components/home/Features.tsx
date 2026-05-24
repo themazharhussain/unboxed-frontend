@@ -105,7 +105,7 @@ export default function FeatureSection() {
   });
 
   return (
-    <div ref={containerRef} className="pb-[12vh]">
+    <div ref={containerRef} className="pb-[6vh] md:pb-[12vh]">
       <Container>
         {features.map((feature, index) => (
           <FeatureCard
