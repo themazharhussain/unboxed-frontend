@@ -47,7 +47,7 @@ export default function Header() {
         {/* Nav links - desktop */}
         <nav className="hidden items-center gap-8 text-base font-medium text-primary lg:flex">
           {links.map(({ href, label }) => (
-            <Link key={href} href={href} className="opacity-70 transition-opacity hover:opacity-100">
+            <Link key={href} href={href} className=" text-primary hover:opacity-70 transition-opacity">
               {label}
             </Link>
           ))}
