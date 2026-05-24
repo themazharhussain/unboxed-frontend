@@ -31,10 +31,10 @@ const cards = [
 export default function WhyChooseUsSection() {
   return (
     <Container className="bg-tertiary">
-      <div className="flex flex-col justify-center items-center w-full py-12 md:py-16 space-y-2">
-        <h3 className="text-center text-3xl font-semibold md:text-[46px]">
+      <div className="flex w-full flex-col items-center justify-center space-y-2 py-12 md:py-16">
+        <h2 className="text-center text-3xl font-semibold md:text-[46px]">
           Why Brands Choose Unboxed
-        </h3>
+        </h2>
         <p className="mb-6 px-3 text-[18px] text-center text-secondary">
          Built for creators, communities and modern brands looking to launch their own mobile network.
         </p>

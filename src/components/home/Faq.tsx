@@ -123,9 +123,9 @@ export default function FaqSection() {
   return (
     <Container className="bg-tertiary">
       <div className="flex w-full flex-col py-12 space-y-8 md:py-16">
-        <h3 className="text-center text-3xl font-semibold md:text-[46px]">
+        <h2 className="text-center text-3xl font-semibold md:text-[46px]">
           Things People Ask
-        </h3>
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
           <div>
