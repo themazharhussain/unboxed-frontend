@@ -1,7 +1,7 @@
+import { FeatureSection, HeroSection } from "@/components/home";
 import type { Metadata } from "next";
-import Hero from "@/components/home/Hero";
-import Features from "@/components/home/Features";
-import CTA from "@/components/home/CTA";
+
+
 
 export const metadata: Metadata = {
   title: "Unboxed — Launch Your Branded Mobile Network",
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Features />
-      <CTA />
+    <HeroSection />
+    <FeatureSection />s
+     
     </>
   );
 }
