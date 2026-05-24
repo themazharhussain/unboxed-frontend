@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import Button from "@/components/ui/Button";
 import MenuIcon from "@/components/icons/MenuIcon";
 import CloseIcon from "@/components/icons/CloseIcon";
+import UnboxedLogoAnimation from "@/components/animations/UnboxLogo";
 
 const links = [
   { href: "/about", label: "About Us" },
@@ -37,9 +38,10 @@ export default function Header() {
   return (
     <header className="relative z-50 w-full lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:backdrop-blur-sm">
       <div className="mx-auto flex h-18 w-full max-w-330 items-center justify-between px-4 sm:px-6 lg:px-8">
+
         {/* Logo */}
         <Link href="/" className="shrink-0">
-          <Image src="/logos/logo.svg" alt="Unboxed logo" width={141} height={27} priority className="h-auto w-auto" />
+          <UnboxedLogoAnimation />
         </Link>
 
         {/* Nav links - desktop */}
