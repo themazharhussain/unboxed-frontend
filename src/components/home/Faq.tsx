@@ -111,6 +111,11 @@ function FaqItem({
   );
 }
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -123,12 +128,25 @@ export default function FaqSection() {
   return (
     <Container className="bg-tertiary">
       <div className="flex w-full flex-col py-12 space-y-8 md:py-16">
-        <h2 className="text-center text-3xl font-semibold md:text-[46px]">
+        <motion.h2
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center text-3xl font-semibold md:text-[46px]"
+        >
           Things People Ask
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12">
-          <div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+          >
             {left.map((item, i) => (
               <FaqItem
                 key={i}
@@ -137,8 +155,14 @@ export default function FaqSection() {
                 onToggle={() => toggle(i * 2)}
               />
             ))}
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.18 }}
+          >
             {right.map((item, i) => (
               <FaqItem
                 key={i}
@@ -147,7 +171,7 @@ export default function FaqSection() {
                 onToggle={() => toggle(i * 2 + 1)}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </Container>

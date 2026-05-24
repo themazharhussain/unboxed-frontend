@@ -45,18 +45,20 @@ function FeatureCard({
   const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
   const blur = useTransform(progress, [index / total, 1], [0, isLast ? 0 : 1.5]);
   const filter = useTransform(blur, (v) => `blur(${v}px)`);
+  const x = useTransform(progress, [index / total, (index + 1) / total], [0, 10]);
+  const y = useTransform(progress, [index / total, (index + 1) / total], [0, -10]);
 
   return (
     // sticky anchor — sticks at top of viewport, no height of its own
     <div
-      className="sticky top-20 my-10"
+      className="sticky top-10 lg:top-25 my-10"
       style={{ zIndex: index + 1 }}
     >
       {/* motion wrapper — offset downward per index so cards visually stack */}
       <motion.div
         style={{
           top: `${index * CARD_OFFSET}px`,
-          ...(isLast ? {} : { scale, filter, willChange: "transform, filter", transformOrigin: "top center" }),
+          ...(isLast ? { x, y } : { x, y, scale, filter, willChange: "transform, filter", transformOrigin: "top center" }),
         }}
         className="relative"
       >
