@@ -4,16 +4,16 @@ import Container from "@/components/ui/Container";
 export default function HeroSection() {
   return (
     <Container>
-      <div className="w-full flex flex-col items-center justify-center  overflow-hidden text-center space-y-4 py-12">
-        <h1 className="flex flex-col text-4xl sm:text-5xl sm:leading-13.5 lg:text-[90px] lg:leading-23.75 font-semibold">
-          <span>Your Mobile Network</span>
-          <span className="text-secondary"> Straight Out The Box</span>
+      <div className="w-full flex flex-col items-center justify-center  overflow-hidden text-center space-y-4 py-12 md:py-16">
+        <h1 className="text-center text-4xl md:text-6xl lg:text-[90px] font-semibold">
+          <span className="block">Your Mobile Network</span>
+          <span className="block text-secondary"> Straight Out The Box</span>
         </h1>
-        <p className="flex flex-col lg:px-4 text-[18px] leading-4.5 lg:text-[22px] lg:leading-6.75 text-secondary">
-          <span>
+        <p className="px-3 text-center text-[18px] lg:text-[22px] text-secondary">
+          <span className="md:block">
             Launch your own branded mobile network in minutes with everything you need to
           </span>
-          <span>
+          <span className="md:block">
             onboard customers, manage SIMs and grow under your own brand.
           </span>
         </p>

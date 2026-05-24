@@ -28,7 +28,7 @@ export default function FeatureSection() {
       {features.map((feature, index) => (
         <div
           key={index}
-          className="grid w-full grid-cols-1 gap-6 py-8 lg:grid-cols-2 lg:py-12"
+          className="grid w-full grid-cols-1 gap-6 py-12 lg:grid-cols-2"
         >
           <div>
             <Image
@@ -37,6 +37,7 @@ export default function FeatureSection() {
               width={460}
               height={300}
               priority
+              className="object-cover"
             />
           </div>
 
