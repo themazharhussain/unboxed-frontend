@@ -36,7 +36,7 @@ export default function Header() {
 
   return (
     <header className="w-full border-b border-black/10">
-      <div className="mx-auto flex h-18 w-full max-w-312 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-18 w-full max-w-330 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="shrink-0">
           <Image src="/logos/logo.svg" alt="Unboxed logo" width={141} height={27} priority className="h-auto w-auto" />
