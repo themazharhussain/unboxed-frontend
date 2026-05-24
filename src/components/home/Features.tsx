@@ -1,8 +1,12 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
 
 const features = [
-    {
+  {
     image: { src: "/images/home/container.png", alt: "Unlock new revenue feature" },
     heading: "Unlock new revenue and stay connected to your customers",
     body: "Launch your own branded mobile network to create new recurring revenue streams, increase customer retention and stay visible on your customers phones every single day.",
@@ -22,14 +26,41 @@ const features = [
   },
 ];
 
-export default function FeatureSection() {
+// Card height + gap in px — used to offset each card so they visually overlap
+const CARD_OFFSET = 24;
+
+function FeatureCard({
+  feature,
+  index,
+  total,
+  progress,
+}: {
+  feature: (typeof features)[0];
+  index: number;
+  total: number;
+  progress: ReturnType<typeof useScroll>["scrollYProgress"];
+}) {
+  const isLast = index === total - 1;
+  const targetScale = 1 - (total - index - 1) * 0.06;
+  const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
+  const blur = useTransform(progress, [index / total, 1], [0, isLast ? 0 : 1.5]);
+  const filter = useTransform(blur, (v) => `blur(${v}px)`);
+
   return (
-    <Container>
-      {features.map((feature, index) => (
-        <div
-          key={index}
-          className="grid w-full grid-cols-1 gap-6 py-12 lg:grid-cols-2"
-        >
+    // sticky anchor — sticks at top of viewport, no height of its own
+    <div
+      className="sticky top-20 my-10"
+      style={{ zIndex: index + 1 }}
+    >
+      {/* motion wrapper — offset downward per index so cards visually stack */}
+      <motion.div
+        style={{
+          top: `${index * CARD_OFFSET}px`,
+          ...(isLast ? {} : { scale, filter, willChange: "transform, filter", transformOrigin: "top center" }),
+        }}
+        className="relative"
+      >
+        <div className="grid w-full grid-cols-1 gap-6 mb-5 lg:grid-cols-2 bg-body">
           <div>
             <Image
               src={feature.image.src}
@@ -58,7 +89,32 @@ export default function FeatureSection() {
             </div>
           </div>
         </div>
-      ))}
-    </Container>
+      </motion.div>
+    </div>
+  );
+}
+
+export default function FeatureSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  return (
+    <div ref={containerRef} className="pb-[12vh]">
+      <Container>
+        {features.map((feature, index) => (
+          <FeatureCard
+            key={index}
+            feature={feature}
+            index={index}
+            total={features.length}
+            progress={scrollYProgress}
+          />
+        ))}
+      </Container>
+    </div>
   );
 }

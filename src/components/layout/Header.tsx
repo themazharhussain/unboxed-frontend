@@ -35,7 +35,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full border-b border-black/10">
+    <header className="relative z-50 w-full lg:fixed lg:top-0 lg:left-0 lg:right-0 lg:backdrop-blur-sm">
       <div className="mx-auto flex h-18 w-full max-w-330 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="shrink-0">
