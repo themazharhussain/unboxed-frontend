@@ -83,7 +83,7 @@ function FeatureCard({
               {feature.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex h-8.25 shrink-0 items-center justify-center rounded-[100px] border border-black px-2"
+                  className="inline-flex h-8.25 shrink-0 items-center justify-center rounded-full px-2.5 text-primary ring-1 ring-black/10"
                 >
                   {tag}
                 </span>
