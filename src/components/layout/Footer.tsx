@@ -60,39 +60,78 @@ const legal = [
   { label: "Cookies Policy", href: "/cookies" },
 ];
 
-function SocialLink({ label, href, Icon }: { label: string; href: string; Icon: React.ComponentType<{ size?: number }> }) {
+function SocialLink({
+  label,
+  href,
+  Icon,
+}: {
+  label: string;
+  href: string;
+  Icon: React.ComponentType<{ size?: number }>;
+}) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div className="relative flex items-center justify-center">
-      <AnimatePresence>
+    <div className="relative flex items-center justify-center perspective-[700px]">
+      {/* <AnimatePresence>
         {hovered && (
           <motion.span
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-primary px-2 py-1 text-[11px] font-medium text-body"
+            className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-primary px-2 py-1 text-[11px] font-medium shadow-sm"
           >
             {label}
           </motion.span>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
+
       <motion.div
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
-        whileHover={{ y: -3 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
+        whileHover={{
+          y: -8,
+          scale: 1.10,
+          rotateX: 10,
+          rotateY: -10,
+          z: 40,
+        }}
+        whileTap={{
+          scale: 0.95,
+          y: -4,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 320,
+          damping: 18,
+        }}
+        className="relative rounded-full transform-3d"
       >
-        <Link
-          href={href}
-          aria-label={label}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-primary opacity-50 transition-opacity hover:opacity-100"
+        <motion.div
+          animate={
+            hovered
+              ? {
+                  boxShadow:
+                    "0 18px 35px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.35)",
+                }
+              : {
+                  
+                }
+          }
+          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="flex size-11 items-center justify-center rounded-full text-secondary transition-opacity"
         >
-          <Icon size={20} />
-        </Link>
+          <Link
+            href={href}
+            aria-label={label}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center"
+          >
+            <Icon size={30} />
+          </Link>
+        </motion.div>
       </motion.div>
     </div>
   );
@@ -101,19 +140,19 @@ function SocialLink({ label, href, Icon }: { label: string; href: string; Icon: 
 export default function Footer() {
   return (
     <footer className="w-full">
-      <div className="mx-auto w-full max-w-330 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-400 px-4 sm:px-6 lg:px-8">
 
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-12 md:py-16 lg:grid-cols-5">
 
           {/* Logo column */}
-          <div className="flex items-start">
+          <div className="flex justify-center lg:items-start">
             <Image src="/logos/logo-square.svg" alt="Unboxed" width={61} height={61} style={{ width: 61, height: 61 }} />
           </div>
 
           {/* Nav columns */}
           {nav.map(({ heading, links }) => (
-            <div key={heading}>
+            <div key={heading} className="text-center">
               <p className="mb-4 text-base font-semibold text-primary">{heading}</p>
               <ul className="flex flex-col gap-3">
                 {links.map(({ label, href }) => (
@@ -130,18 +169,18 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-4 border-t border-black/10 py-6">
+        <div className="flex flex-col gap-6 border-t border-black/10 py-8">
 
           {/* Socials */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center gap-4">
             {socials.map(({ label, href, Icon }) => (
               <SocialLink key={label} label={label} href={href} Icon={Icon} />
             ))}
           </div>
 
           {/* Legal + copyright */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-col gap-6 lg:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
               {legal.map(({ label, href }) => (
                 <Link
                   key={label}
@@ -152,7 +191,7 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-            <p className="text-center text-sm text-secondary">
+            <p className="text-center text-sm text-primary">
               © {new Date().getFullYear()} Unboxed
             </p>
           </div>
