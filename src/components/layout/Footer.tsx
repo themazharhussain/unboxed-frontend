@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import FacebookIcon from "@/components/icons/FacebookIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import LinkedInIcon from "@/components/icons/LinkedInIcon";
@@ -56,6 +60,44 @@ const legal = [
   { label: "Cookies Policy", href: "/cookies" },
 ];
 
+function SocialLink({ label, href, Icon }: { label: string; href: string; Icon: React.ComponentType<{ size?: number }> }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div className="relative flex items-center justify-center">
+      <AnimatePresence>
+        {hovered && (
+          <motion.span
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-primary px-2 py-1 text-[11px] font-medium text-body"
+          >
+            {label}
+          </motion.span>
+        )}
+      </AnimatePresence>
+      <motion.div
+        onHoverStart={() => setHovered(true)}
+        onHoverEnd={() => setHovered(false)}
+        whileHover={{ y: -3 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      >
+        <Link
+          href={href}
+          aria-label={label}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary opacity-50 transition-opacity hover:opacity-100"
+        >
+          <Icon size={20} />
+        </Link>
+      </motion.div>
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="w-full">
@@ -93,16 +135,7 @@ export default function Footer() {
           {/* Socials */}
           <div className="flex items-center gap-4">
             {socials.map(({ label, href, Icon }) => (
-              <Link
-                key={label}
-                href={href}
-                aria-label={label}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary opacity-50 transition-opacity hover:opacity-100"
-              >
-                <Icon size={20} />
-              </Link>
+              <SocialLink key={label} label={label} href={href} Icon={Icon} />
             ))}
           </div>
 
