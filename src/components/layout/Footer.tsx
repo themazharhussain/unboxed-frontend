@@ -62,17 +62,17 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-312 px-4 sm:px-6 lg:px-8">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 gap-10 py-16 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-10 py-12 md:py-16 lg:grid-cols-5">
 
           {/* Logo column */}
           <div className="flex items-start">
-            <Image src="/logos/logo-square.svg" alt="Unboxed" width={48} height={48} />
+            <Image src="/logos/logo-square.svg" alt="Unboxed" width={61} height={61} />
           </div>
 
           {/* Nav columns */}
           {nav.map(({ heading, links }) => (
             <div key={heading}>
-              <p className="mb-4 text-sm font-semibold text-primary">{heading}</p>
+              <p className="mb-4 text-base font-semibold text-primary">{heading}</p>
               <ul className="flex flex-col gap-3">
                 {links.map(({ label, href }) => (
                   <li key={label}>
@@ -88,7 +88,9 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div>
+        <div className="flex flex-col gap-4 border-t border-black/10 py-6">
+
+          {/* Socials */}
           <div className="flex items-center gap-4">
             {socials.map(({ label, href, Icon }) => (
               <Link
@@ -97,20 +99,16 @@ export default function Footer() {
                 aria-label={label}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary opacity-50 transition-opacity hover:text-primary/70"
+                className="text-primary opacity-50 transition-opacity hover:opacity-100"
               >
                 <Icon size={20} />
               </Link>
             ))}
           </div>
-        </div>
 
-        <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-
-          {/* Socials + legal */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-
-            <div className="flex items-center gap-6">
+          {/* Legal + copyright */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center gap-4">
               {legal.map(({ label, href }) => (
                 <Link
                   key={label}
@@ -121,12 +119,11 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
+            <p className="text-center text-sm text-secondary">
+              © {new Date().getFullYear()} Unboxed
+            </p>
           </div>
 
-          {/* Copyright */}
-          <p className="text-sm text-primary">
-            © {new Date().getFullYear()} Unboxed
-          </p>
         </div>
 
       </div>

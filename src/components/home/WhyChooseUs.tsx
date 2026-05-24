@@ -3,28 +3,28 @@ import Button from "../ui/Button";
 
 const cards = [
   {
-    heading: "Launch Fast",
+    heading: "Launch fast",
     body: "Go live with your own branded mobile network in days.",
   },
   {
-    heading: "Launch Fast",
-    body: "Go live with your own branded mobile network in days.",
+    heading: "New recurring revenue",
+    body: "Create a new subscription revenue stream directly from your audience.",
   },
   {
-    heading: "Launch Fast",
-    body: "Go live with your own branded mobile network in days.",
+    heading: "Daily brand visibility",
+    body: "Stay visible on your customers phones every single day.",
   },
   {
-    heading: "Launch Fast",
-    body: "Go live with your own branded mobile network in days.",
+    heading: "Fully managed",
+    body: "We handle the telecoms, billing and infrastructure for you.",
   },
   {
-    heading: "Launch Fast",
-    body: "Go live with your own branded mobile network in days.",
+    heading: "Fully branded",
+    body: "Custom SIMs, app experience and onboarding designed around your brand.",
   },
   {
-    heading: "Launch Fast",
-    body: "Go live with your own branded mobile network in days.",
+    heading: "Built to scale",
+    body: "Start small and grow into a fully established mobile network.",
   },
 ];
 
