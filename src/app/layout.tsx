@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import LocatorSetup from "@/components/ui/LocatorSetup";
+import PageLoader from "@/components/ui/PageLoader";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -45,6 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <PageLoader />
         <LocatorSetup />
         <Header />
         <main className="flex-1 lg:pt-18">{children}</main>

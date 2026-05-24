@@ -7,10 +7,10 @@ import Image from "next/image";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const diamonds = [
-  { finalX: -12, finalY: -12 },
-  { finalX: 12, finalY: -12 },
-  { finalX: -12, finalY: 12 },
-  { finalX: 12, finalY: 12 },
+  { finalX: -10, finalY: -10 },
+  { finalX: 10, finalY: -10 },
+  { finalX: -10, finalY: 10 },
+  { finalX: 10, finalY: 10 },
 ];
 
 function Diamond({ finalX, finalY, index }: {
@@ -35,7 +35,7 @@ function Diamond({ finalX, finalY, index }: {
       });
       // Phase 3: rotate back to square
       await controls.start({
-        rotate: 0,
+        rotate: 90,
         transition: { delay: index * 0.05, duration: 0.6, ease: EASE },
       });
     }
