@@ -3,17 +3,23 @@ import Container from "@/components/ui/Container";
 
 export default function Hero() {
   return (
-    <section className="py-24 sm:py-32">
-      <Container className="flex flex-col items-start gap-6">
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
-          Welcome to Unboxed
+    <Container>
+      <div className="w-full flex flex-col items-center justify-center  overflow-hidden text-center space-y-4 px-4 py-12">
+        <h1 className="flex flex-col text-3xl sm:text-5xl sm:leading-13.5 lg:text-[90px] lg:leading-23.75 font-semibold">
+          <span>Your Mobile Network</span>
+          <span className="text-secondary"> Straight Out The Box</span>
         </h1>
-        <p className="max-w-xl text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          A clean starting point for your Next.js App Router project. Simple,
-          fast, and ready for you to build on.
+        <p className="text-[18px] leading-4.5 lg:text-xl lg:leading-6.25 text-secondary">
+          <span>
+            Launch your own branded mobile network in minutes with everything you need to
+          </span>
+          <span>
+            onboard customers, manage SIMs and grow under your own brand.
+          </span>
         </p>
-        <Button href="/about">Learn more</Button>
-      </Container>
-    </section>
+        <Button href="/contact" className="mt-2">Launch Your Network</Button>
+      </div>
+    </Container>
+
   );
 }

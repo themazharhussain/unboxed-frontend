@@ -18,7 +18,7 @@ export default function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="w-full border-b border-primary/10 bg-body">
+    <header className="w-full border-b border-black/10">
       <div className="mx-auto flex items-center justify-between h-18 w-full max-w-312  px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="shrink-0">
@@ -39,7 +39,7 @@ export default function Header() {
           <Button href="/login" variant="outline" width={76} height={40}>
             Login
           </Button>
-          <Button href="/get-started" variant="primary" width={145} height={40}>
+          <Button href="/get-started" variant="primary" width={130} height={40}>
             Get Started
           </Button>
         </div>

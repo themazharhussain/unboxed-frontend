@@ -11,8 +11,30 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Unboxed",
-  description: "A simple Next.js App Router starter",
+  title: {
+    default: "Unboxed — Launch Your Branded Mobile Network",
+    template: "%s | Unboxed",
+  },
+  description:
+    "Launch your own branded mobile network in minutes. Onboard customers, manage SIMs and grow under your own brand — straight out the box.",
+  metadataBase: new URL("https://unboxed.com"),
+  openGraph: {
+    type: "website",
+    siteName: "Unboxed",
+    title: "Unboxed — Launch Your Branded Mobile Network",
+    description:
+      "Launch your own branded mobile network in minutes. Onboard customers, manage SIMs and grow under your own brand.",
+    url: "https://unboxed.com",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Unboxed" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Unboxed — Launch Your Branded Mobile Network",
+    description:
+      "Launch your own branded mobile network in minutes. Onboard customers, manage SIMs and grow under your own brand.",
+    images: ["/og-image.png"],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
